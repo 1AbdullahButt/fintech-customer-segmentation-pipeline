@@ -4,6 +4,12 @@ A beginner-friendly, reproducible machine learning project on a made-up digital 
 
 **Pipeline:** 3 Excel tables -> SQLite + SQL JOINs -> cleaning and scaling -> K-Means and DBSCAN clustering -> classification of the cluster labels -> tuning and evaluation -> saved `.joblib` pipeline -> input validation -> model card -> Streamlit app.
 
+**GitHub:** [https://github.com/1AbdullahButt/fintech-customer-segmentation-pipeline](https://github.com/1AbdullahButt/fintech-customer-segmentation-pipeline)
+
+**Live app:** [https://fintech-customer-segmentation-pipeline.streamlit.app/](https://fintech-customer-segmentation-pipeline.streamlit.app/)
+
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://fintech-customer-segmentation-pipeline.streamlit.app/)
+
 ![App screenshot](docs/app_screenshot.png)
 
 ## What is in this folder
@@ -42,7 +48,7 @@ git branch -M main
 git remote add origin https://github.com/1AbdullahButt/fintech-customer-segmentation-pipeline.git
 git push -u origin main
 ```
-3. Optional: deploy the app free on share.streamlit.io by pointing it at `app.py`.
+3. The app is deployed on Streamlit Community Cloud from `app.py`: https://fintech-customer-segmentation-pipeline.streamlit.app/
 
 ## Important note
 The data is synthetic and the cluster labels come from K-Means on almost the same columns, so scores near 100% are expected. This project demonstrates the pipeline, not real-world accuracy. See `MODEL_CARD.md`.
