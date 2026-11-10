@@ -39,7 +39,7 @@ git init
 git add .
 git commit -m "End-to-end ML pipeline"
 git branch -M main
-git remote add origin https://github.com/YOUR-NAME/YOUR-REPO.git
+git remote add origin https://github.com/1AbdullahButt/fintech-customer-segmentation-pipeline.git
 git push -u origin main
 ```
 3. Optional: deploy the app free on share.streamlit.io by pointing it at `app.py`.
