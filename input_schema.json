@@ -1,0 +1,56 @@
+{
+  "features": {
+    "age": {
+      "type": "int",
+      "min": 18,
+      "max": 100
+    },
+    "gender": {
+      "type": "category",
+      "allowed": [
+        "Male",
+        "Female"
+      ]
+    },
+    "city": {
+      "type": "category",
+      "allowed": [
+        "Islamabad",
+        "Karachi",
+        "Lahore",
+        "Peshawar",
+        "Quetta"
+      ]
+    },
+    "monthly_income": {
+      "type": "float",
+      "min": 0,
+      "max": 1000000
+    },
+    "avg_balance": {
+      "type": "float",
+      "min": 0,
+      "max": 2000000
+    },
+    "monthly_transactions": {
+      "type": "int",
+      "min": 0,
+      "max": 500
+    },
+    "monthly_logins": {
+      "type": "int",
+      "min": 0,
+      "max": 500
+    },
+    "ticket_count": {
+      "type": "int",
+      "min": 0,
+      "max": 100
+    }
+  },
+  "segments": {
+    "2": "Low value",
+    "0": "Medium value",
+    "1": "High value"
+  }
+}

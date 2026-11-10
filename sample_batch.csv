@@ -1,0 +1,8 @@
+age,gender,city,monthly_income,avg_balance,monthly_transactions,monthly_logins,ticket_count
+46,Female,Karachi,83909.0,14979.0,4.0,7.0,1
+60,Female,Quetta,45282.0,14356.0,3.0,1.0,0
+32,Female,Karachi,230696.0,94163.0,21.0,15.0,0
+28,Male,Karachi,146219.0,80797.0,39.0,14.0,3
+56,Male,Lahore,64518.0,295398.0,41.0,28.0,1
+36,Male,Lahore,58365.0,306149.0,42.0,31.0,1
+-5,Other,Paris,40000.0,8000.0,3.0,2.0,1

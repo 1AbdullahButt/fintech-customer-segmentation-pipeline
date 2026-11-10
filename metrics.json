@@ -1,0 +1,30 @@
+{
+  "best_model": "Logistic Regression",
+  "best_settings": {
+    "model__C": 1
+  },
+  "accuracy": 1.0,
+  "precision_macro": 1.0,
+  "recall_macro": 1.0,
+  "f1_macro": 1.0,
+  "tuning": [
+    {
+      "model": "Logistic Regression",
+      "best_settings": "{'model__C': 1}",
+      "cv_f1_macro": 0.9962
+    },
+    {
+      "model": "Random Forest",
+      "best_settings": "{'model__max_depth': 3, 'model__n_estimators': 100}",
+      "cv_f1_macro": 0.9914
+    }
+  ],
+  "segment_sizes": {
+    "Low value": 466,
+    "Medium value": 343,
+    "High value": 191
+  },
+  "train_rows": 800,
+  "test_rows": 200,
+  "kmeans_silhouette": 0.411
+}
