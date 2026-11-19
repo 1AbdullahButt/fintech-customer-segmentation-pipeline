@@ -37,6 +37,14 @@ streamlit run app.py
 ```
 The app opens in your browser. If you get a scikit-learn version error when loading the model, run the notebook once to rebuild `cluster_model.joblib`.
 
+## Running tests
+The tests in `tests/` check `validation.py` against the real `input_schema.json`, `sample_batch.csv` and `cluster_model.joblib`.
+```
+pip install -r requirements-dev.txt
+pytest
+```
+Two tests are marked `xfail`: they record known bugs in `validation.py` (numpy integers rejected, infinity for an int feature crashes).
+
 ## Put it on GitHub
 1. Create a new empty repository on github.com.
 2. Upload all files in this folder (Add file -> Upload files), or from a terminal:
