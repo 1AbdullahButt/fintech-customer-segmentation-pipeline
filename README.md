@@ -37,6 +37,13 @@ streamlit run app.py
 ```
 The app opens in your browser. If you get a scikit-learn version error when loading the model, run the notebook once to rebuild `cluster_model.joblib`.
 
+## Run with Docker
+```
+docker build -t fintech-segmentation-app .
+docker run --rm -p 8501:8501 fintech-segmentation-app
+```
+Then open http://localhost:8501. The image only contains the app and the files it loads (model, schema, metrics, sample CSV, confusion matrix, model card); the notebook, datasets and screenshots are left out by `.dockerignore`.
+
 ## Put it on GitHub
 1. Create a new empty repository on github.com.
 2. Upload all files in this folder (Add file -> Upload files), or from a terminal:
