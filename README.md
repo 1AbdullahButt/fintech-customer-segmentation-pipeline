@@ -50,5 +50,17 @@ git push -u origin main
 ```
 3. The app is deployed on Streamlit Community Cloud from `app.py`: https://fintech-customer-segmentation-pipeline.streamlit.app/
 
+## Continuous integration
+The GitHub Actions workflow in `.github/workflows/tests.yml` runs the test suite on every push and pull request:
+1. Checks out the code and sets up Python 3.12.
+2. Installs `requirements.txt` plus `pytest`.
+3. Runs `python -m pytest -v`. Pytest exit code 5 ("no tests collected") is treated as a pass, so the workflow stays green on branches without tests.
+
+To run the same check locally:
+```
+pip install -r requirements.txt pytest
+python -m pytest -v
+```
+
 ## Important note
 The data is synthetic and the cluster labels come from K-Means on almost the same columns, so scores near 100% are expected. This project demonstrates the pipeline, not real-world accuracy. See `MODEL_CARD.md`.
