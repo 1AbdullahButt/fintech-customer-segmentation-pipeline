@@ -1,29 +1,28 @@
-import json
-
-import joblib
 import pandas as pd
 import streamlit as st
 
+import loaders
+from loaders import load_or_stop
 from validation import predict_segment, validate_input
 
 st.set_page_config(page_title="Customer Segment Predictor", page_icon="💳", layout="wide")
 
+
 # ---------- load the saved model and files made by the notebook ----------
 @st.cache_resource
 def load_model():
-    return joblib.load("cluster_model.joblib")
+    return loaders.load_model("cluster_model.joblib")
 
 
 @st.cache_data
-def load_json(path):
-    with open(path) as f:
-        return json.load(f)
+def load_schema(required):
+    return loaders.load_schema("input_schema.json", required=required)
 
 
-model = load_model()
-schema = load_json("input_schema.json")
-metrics = load_json("metrics.json")
-features = schema["features"]
+@st.cache_data
+def load_metrics():
+    return loaders.load_metrics("metrics.json")
+
 
 # ---------- what each segment means for the business ----------
 SEGMENTS = {
@@ -57,6 +56,16 @@ PRESETS = {
     "Example: high-value user": {"age": 45, "gender": "Male", "city": "Lahore", "monthly_income": 250000,
                                  "avg_balance": 300000, "monthly_transactions": 45, "monthly_logins": 30, "ticket_count": 0},
 }
+
+# a missing or broken file shows a clear error and stops the app here, instead of a traceback
+model = load_or_stop(load_model)
+schema = load_or_stop(load_schema, tuple(PRESETS["Custom"]))
+load_or_stop(loaders.check_model_matches_schema, model, schema, list(SEGMENTS))
+metrics = load_or_stop(load_metrics)
+sample_csv = load_or_stop(loaders.load_csv_bytes, "sample_batch.csv")
+confusion_png = load_or_stop(loaders.load_image_bytes, "confusion_matrix.png")
+model_card = load_or_stop(loaders.load_text, "MODEL_CARD.md")
+features = schema["features"]
 
 # ---------- a little styling ----------
 st.markdown(
@@ -151,8 +160,7 @@ with tab_one:
 with tab_batch:
     st.subheader("Predict many customers from a CSV file")
     st.write("Upload a CSV with these columns: " + ", ".join(f"`{c}`" for c in features))
-    with open("sample_batch.csv", "rb") as f:
-        st.download_button("Download a sample CSV (last row is intentionally wrong)", f, "sample_batch.csv", "text/csv")
+    st.download_button("Download a sample CSV (last row is intentionally wrong)", sample_csv, "sample_batch.csv", "text/csv")
 
     uploaded = st.file_uploader("Choose a CSV file", type="csv")
     if uploaded is not None:
@@ -193,7 +201,7 @@ with tab_perf:
     a, b = st.columns(2, gap="large")
     with a:
         st.markdown("**Confusion matrix**")
-        st.image("confusion_matrix.png")
+        st.image(confusion_png)
     with b:
         st.markdown("**Segment sizes**")
         st.bar_chart(pd.Series(metrics["segment_sizes"]))
@@ -209,5 +217,4 @@ with tab_perf:
 # TAB 4: model card
 # =====================================================================
 with tab_card:
-    with open("MODEL_CARD.md", encoding="utf-8") as f:
-        st.markdown(f.read())
+    st.markdown(model_card)
