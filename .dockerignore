@@ -1,0 +1,13 @@
+# Allowlist: send only what the image needs to the build context.
+# Notebooks, .xlsx/.csv data dumps, databases, SQL, screenshots, docs and .git stay out.
+*
+
+!requirements.txt
+!app.py
+!validation.py
+!cluster_model.joblib
+!input_schema.json
+!metrics.json
+!sample_batch.csv
+!confusion_matrix.png
+!MODEL_CARD.md
